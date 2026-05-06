@@ -17,11 +17,15 @@
     'security/ir.model.access.csv',
 
     'data/disease_data.xml',
+    'data/doctor_category_data.xml',
 
     'views/doctor_views.xml',
     'views/patient_views.xml',
     'views/disease_views.xml',
     'views/visit_views.xml',
+    'views/doctor_category_views.xml',
+    'views/doctor_history_views.xml',
+    'views/wizard_views.xml',
     'views/hr_hospital_menu.xml',
 ],
     'demo': ['demo/demo_data.xml',

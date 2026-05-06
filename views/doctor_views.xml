@@ -6,7 +6,12 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
+                <field name="gender"/>
+                <field name="blood_group"/>
+                <field name="birth_date"/>
+                <field name="age" readonly="1"/>
                 <field name="specialty"/>
+                <field name="category_id"/>
                 <field name="phone"/>
             </list>
         </field>
@@ -21,6 +26,7 @@
                     <group>
                         <field name="name"/>
                         <field name="specialty"/>
+                        <field name="category_id"/>
                         <field name="phone"/>
                         <field name="active"/>
                     </group>

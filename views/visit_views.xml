@@ -9,7 +9,11 @@
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
                 <field name="disease_id"/>
-                <field name="visit_date"/>
+                <field name="state"/>
+                <field name="planned_datetime"/>
+                <field name="actual_datetime"/>
+                <field name="disease_id"/>
+                <field name="summary"/>
             </list>
         </field>
     </record>
@@ -25,8 +29,10 @@
                         <field name="patient_id"/>
                         <field name="doctor_id"/>
                         <field name="disease_id"/>
-                        <field name="visit_date"/>
-                        <field name="notes"/>
+                        <field name="state"/>
+                        <field name="planned_datetime"/>
+                        <field name="actual_datetime"/>
+                        <field name="summary"/>
                     </group>
                 </sheet>
             </form>

@@ -8,7 +8,7 @@
                 <field name="name"/>
                 <field name="birth_date"/>
                 <field name="phone"/>
-                <field name="doctor_id"/>
+                <field name="personal_doctor_id"/>
             </list>
         </field>
     </record>
@@ -21,9 +21,12 @@
                 <sheet>
                     <group>
                         <field name="name"/>
+                        <field name="gender"/>
+                        <field name="blood_group"/>
                         <field name="birth_date"/>
+                        <field name="age" readonly="1"/>
                         <field name="phone"/>
-                        <field name="doctor_id"/>
+                        <field name="personal_doctor_id"/>
                         <field name="active"/>
                     </group>
                 </sheet>
