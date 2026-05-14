@@ -41,3 +41,25 @@ class HospitalDoctor(models.Model):
         for doctor in self:
             if doctor.mentor_id and doctor.mentor_id.is_intern:
                 raise ValidationError("Ментор не може бути лікарем-інтерном")
+
+    intern_ids = fields.One2many(
+        comodel_name="hospital.doctor",
+        inverse_name="mentor_id",
+        string="Interns",
+    )
+
+    def action_create_visit(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "New Visit",
+            "res_model": "hospital.visit",
+            "view_mode": "form",
+            "target": "current",
+            "context": {
+                "default_doctor_id": self.id,
+                "default_name": "New Visit",
+                "default_state": "planned",
+            },
+        }

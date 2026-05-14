@@ -112,3 +112,46 @@ class VisitReportWizard(models.TransientModel):
             res["doctor_ids"] = [(6, 0, active_ids)]
 
         return res
+
+
+class DiseaseMonthlyReportWizard(models.TransientModel):
+    _name = "disease.monthly.report.wizard"
+    _description = "Disease Monthly Report Wizard"
+
+    doctor_ids = fields.Many2many(
+        comodel_name="hospital.doctor",
+        string="Doctors",
+    )
+    disease_ids = fields.Many2many(
+        comodel_name="hospital.disease",
+        string="Diseases",
+    )
+    date_from = fields.Date(string="From")
+    date_to = fields.Date(string="To")
+
+    def action_show_report(self):
+        domain = []
+
+        if self.doctor_ids:
+            domain.append(("doctor_id", "in", self.doctor_ids.ids))
+
+        if self.disease_ids:
+            domain.append(("disease_id", "in", self.disease_ids.ids))
+
+        if self.date_from:
+            domain.append(("planned_datetime", ">=", self.date_from))
+
+        if self.date_to:
+            domain.append(("planned_datetime", "<=", self.date_to))
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Disease Report",
+            "res_model": "hospital.visit",
+            "view_mode": "list,form,pivot,graph",
+            "domain": domain,
+            "context": {
+                "group_by": "disease_id",
+            },
+            "target": "current",
+        }

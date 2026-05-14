@@ -22,3 +22,34 @@ class HospitalPatient(models.Model):
         size=20,
     )
     active = fields.Boolean(default=True)
+
+    def action_open_patient_visits(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Patient Visits",
+            "res_model": "hospital.visit",
+            "view_mode": "list,form,calendar,pivot,graph",
+            "domain": [("patient_id", "=", self.id)],
+            "context": {
+                "default_patient_id": self.id,
+            },
+        }
+
+    def action_create_visit(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "New Visit",
+            "res_model": "hospital.visit",
+            "view_mode": "form",
+            "target": "current",
+            "context": {
+                "default_patient_id": self.id,
+                "default_doctor_id": self.personal_doctor_id.id,
+                "default_name": "New Visit",
+                "default_state": "planned",
+            },
+        }

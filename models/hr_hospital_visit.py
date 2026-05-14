@@ -70,3 +70,15 @@ class HospitalVisit(models.Model):
                 )
 
         return super().unlink()
+
+    def action_open_same_disease_visits(self):
+        self.ensure_one()
+
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Visits with Same Disease",
+            "res_model": "hospital.visit",
+            "view_mode": "list,form",
+            "domain": [("disease_id", "=", self.disease_id.id)],
+            "target": "current",
+        }

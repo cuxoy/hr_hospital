@@ -82,4 +82,38 @@
         <field name="binding_view_types">list,form</field>
     </record>
 
+    <record id="view_disease_monthly_report_wizard_form" model="ir.ui.view">
+        <field name="name">disease.monthly.report.wizard.form</field>
+        <field name="model">disease.monthly.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Disease Monthly Report">
+                <group>
+                    <field name="doctor_ids" widget="many2many_tags"/>
+                    <field name="disease_ids" widget="many2many_tags"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="action_show_report"
+                            type="object"
+                            string="Show Report"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_disease_monthly_report_wizard" model="ir.actions.act_window">
+        <field name="name">Disease Monthly Report</field>
+        <field name="res_model">disease.monthly.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_hospital_doctor"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
 </odoo>
