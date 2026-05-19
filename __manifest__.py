@@ -27,6 +27,7 @@
     'views/doctor_history_views.xml',
     'views/wizard_views.xml',
     'views/hr_hospital_menu.xml',
+    'report/doctor_report.xml',
 ],
     'demo': ['demo/demo_data.xml',
 ],

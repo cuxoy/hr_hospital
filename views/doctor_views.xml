@@ -95,30 +95,55 @@
         <field name="arch" type="xml">
             <kanban default_group_by="category_id">
                 <field name="name"/>
+                <field name="category_id"/>
                 <field name="specialty"/>
                 <field name="phone"/>
-                <field name="category_id"/>
                 <field name="is_intern"/>
+                <field name="mentor_id"/>
+                <field name="intern_ids"/>
+
                 <templates>
+                    <t t-name="menu">
+                        <a type="open" class="dropdown-item">Open</a>
+                        <a type="edit" class="dropdown-item">Edit</a>
+                        <a type="delete" class="dropdown-item">Delete</a>
+                    </t>
+
                     <t t-name="card">
                         <div class="oe_kanban_card">
-                            <strong>
-                                <field name="name"/>
-                            </strong>
+                            <div class="o_kanban_record_top">
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                            </div>
+
                             <div>
+                                <span>Qualification: </span>
                                 <field name="category_id"/>
                             </div>
-                            <div>
+
+                            <div t-if="record.specialty.raw_value">
+                                <span>Specialty: </span>
                                 <field name="specialty"/>
                             </div>
-                            <div>
+
+                            <div t-if="record.phone.raw_value">
+                                <span>Phone: </span>
                                 <field name="phone"/>
                             </div>
 
-                            <button name="action_create_visit"
-                                    type="object"
-                                    string="Create Visit"
-                                    class="btn btn-primary mt8"/>
+                            <div t-if="record.intern_ids.raw_value.length">
+                                <hr/>
+                                <strong>Interns:</strong>
+                                <field name="intern_ids" widget="many2many_tags"/>
+                            </div>
+
+                            <div class="mt8">
+                                <button name="action_create_visit"
+                                        type="object"
+                                        string="Create Visit"
+                                        class="btn btn-primary"/>
+                            </div>
                         </div>
                     </t>
                 </templates>
