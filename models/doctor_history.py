@@ -2,6 +2,7 @@ from odoo import api, fields, models
 
 
 class HospitalDoctorHistory(models.Model):
+    """Personal doctor history model."""
     _name = "hospital.doctor.history"
     _description = "Personal Doctor History"
     _order = "assignment_date desc"

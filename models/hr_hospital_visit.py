@@ -3,6 +3,7 @@ from odoo.exceptions import UserError
 
 
 class HospitalVisit(models.Model):
+    """Patient visit model."""
     _name = "hospital.visit"
     _description = "Patient Visit"
 

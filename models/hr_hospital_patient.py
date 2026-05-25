@@ -2,9 +2,15 @@ from odoo import fields, models
 
 
 class HospitalPatient(models.Model):
+    """Hospital patient model."""
     _name = "hospital.patient"
     _inherit = ["hospital.medic.info"]
     _description = "Patient"
+
+    user_id = fields.Many2one(
+        comodel_name="res.users",
+        string="System User",
+    )
 
     name = fields.Char(string="Patient Name", required=True)
     phone = fields.Char(string="Phone")
